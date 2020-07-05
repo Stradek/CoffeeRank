@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Title="CoffeeRank"
+             x:Class="CoffeeRank.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <ListView 
+            x:Name="coffeeList"
+            ItemTapped="OnCoffeeList_ItemTapped"
+            HasUnevenRows="true"
+            BackgroundColor="White">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="100">
+                        <StackLayout Orientation="Vertical" 
+                                     Margin="10,10,10,10">
+                            <Grid
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="coffee_bean_icon.png" Aspect="AspectFit"/>
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding name}" TextColor="#0A0A0A" FontSize="20"/>
+                                        <Label Text="{Binding producer}" FontSize="15"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>

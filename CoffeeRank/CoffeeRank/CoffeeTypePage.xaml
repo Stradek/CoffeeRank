@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Title="CoffeeRank"
+             mc:Ignorable="d"
+             x:Class="CoffeeRank.CoffeeTypePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BindingContext="{Binding actualCoffeeType}">
+                <StackLayout Orientation="Horizontal"
+                                BackgroundColor="#FFB947"
+                                Padding="10, 20, 10, 20"
+                                MinimumHeightRequest="100">
+                    <Label Text="{Binding name}"
+                            x:Name="coffeeName" 
+                            HorizontalOptions="CenterAndExpand" 
+                            HorizontalTextAlignment="Center"
+                            FontSize="40"
+                            FontAttributes="Bold"
+                            TextColor="#573024"/>
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <Image x:Name="flag"
+                                Margin="10, 10, 2, 10"
+                                Aspect="AspectFit"
+                                HorizontalOptions="End"/>
+                            <Label Text="{Binding country}"
+                                x:Name="countryName"
+                                FontSize="22"
+                                HorizontalOptions="End"
+                                VerticalOptions="CenterAndExpand"
+                                TextColor="#4D4D4D"
+                                Margin="2, 10, 10, 10"/>
+                        </StackLayout>
+
+                        <Label Text="{Binding price}"
+                                x:Name="price"
+                                TextColor="Black"
+                                FontSize="22"
+                                Margin="10, 10, 10, 10"/>
+                    </StackLayout>
+
+                    <Label Text="{Binding score}"
+                            x:Name="score"
+                            TextColor="#FFB947"
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="Start"
+                            FontSize="72"
+                            Margin="10, 10, 20, 10"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical"
+                                Padding="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Aroma"
+                               FontSize="22"
+                               HorizontalOptions="Start"/>
+                        <Label x:Name="aromaLabel"
+                               HorizontalOptions="EndAndExpand"
+                               FontSize="22"/>
+                    </StackLayout>
+                    <ProgressBar Progress="{Binding aroma}"
+                                 x:Name="aromaProgressBar"
+                                 ProgressColor="#573024"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Acidity"
+                               FontSize="22"
+                               HorizontalOptions="Start"/>
+                        <Label x:Name="acidityLabel"
+                               HorizontalOptions="EndAndExpand"
+                               FontSize="22"/>
+                    </StackLayout>
+                    <ProgressBar Progress="{Binding acidity}"
+                                 x:Name="acidityProgressBar"
+                                 ProgressColor="#573024"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Body"
+                               FontSize="22"
+                               HorizontalOptions="Start"/>
+                        <Label x:Name="bodyLabel"
+                               HorizontalOptions="EndAndExpand"
+                               FontSize="22"/>
+                    </StackLayout>
+                    <ProgressBar Progress="{Binding body}"
+                                 x:Name="bodyProgressBar"
+                                 ProgressColor="#573024"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Flavor"
+                               FontSize="22"
+                               HorizontalOptions="Start"/>
+                        <Label x:Name="flavorLabel"
+                               HorizontalOptions="EndAndExpand"
+                               FontSize="22"/>
+                    </StackLayout>
+                    <ProgressBar Progress="{Binding flavor}"
+                                 x:Name="flavorProgressBar"
+                                 ProgressColor="#573024"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Aftertaste"
+                               FontSize="22"
+                               HorizontalOptions="Start"/>
+                        <Label x:Name="aftertasteLabel"
+                               HorizontalOptions="EndAndExpand"
+                               FontSize="22"/>
+                    </StackLayout>
+                    <ProgressBar Progress="{Binding aftertaste}"
+                                 x:Name="aftertasteProgressBar"
+                                 ProgressColor="#573024"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
