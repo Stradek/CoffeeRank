@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,43 +15,74 @@ namespace CoffeeRank
     public partial class CoffeeTypePage : ContentPage
     {
         public static CoffeeType actualCoffeeType;
+
+        uint animationTime = 2000;
+        Easing animationType = Easing.SinOut;
+
+        public ICommand _tapCommand => new Command<string>(async (url) => Launcher.OpenAsync(new Uri(url)));
+
         public CoffeeTypePage(CoffeeType coffeeType)
         {
             InitializeComponent();
+
+            actualCoffeeType = coffeeType;
 
             coffeeName.Text = coffeeType.name;
             countryName.Text = coffeeType.country;
             flag.Source = ParseFlagName(coffeeType.country);
             score.Text = coffeeType.score;
             price.Text = coffeeType.price;
+            websiteLink.Text = coffeeType.website;
 
-            uint animationTime = 2000;
-            Easing animationType = Easing.SinOut;
+            websiteLink.GestureRecognizers.Add(new TapGestureRecognizer()
+            {
+                Command = _tapCommand,
+                CommandParameter = websiteLink.Text
+            });
 
-            if (coffeeType.aroma != "unknown")
+            
+
+            if (isParameterKnown(coffeeType.aroma))
             {
                 aromaLabel.Text = coffeeType.aroma;
-                aromaProgressBar.ProgressTo(Double.Parse(coffeeType.aroma) / 10d, animationTime, animationType);
+                setProgressBarAnimation(aromaProgressBar, coffeeType.aroma);
             }
-            if (coffeeType.acidity != "unknown")
+            if (isParameterKnown(coffeeType.acidity))
             {
                 acidityLabel.Text = coffeeType.acidity;
-                acidityProgressBar.ProgressTo(Double.Parse(coffeeType.acidity) / 10d, animationTime, animationType);
+                setProgressBarAnimation(acidityProgressBar, coffeeType.acidity);
             }
-            if (coffeeType.body != "unknown")
+            if (isParameterKnown(coffeeType.body))
             {
                 bodyLabel.Text = coffeeType.body;
-                bodyProgressBar.ProgressTo(Double.Parse(coffeeType.body) / 10d, animationTime, animationType);
+                setProgressBarAnimation(bodyProgressBar, coffeeType.body);
             }
-            if (coffeeType.flavor != "unknown")
+            if (isParameterKnown(coffeeType.flavor))
             {
                 flavorLabel.Text = coffeeType.flavor;
-                flavorProgressBar.ProgressTo(Double.Parse(coffeeType.flavor) / 10d, animationTime, animationType);
+                setProgressBarAnimation(flavorProgressBar, coffeeType.flavor);
             }
-            if (coffeeType.aftertaste != "unknown")
+            if (isParameterKnown(coffeeType.aftertaste))
             {
                 aftertasteLabel.Text = coffeeType.aftertaste;
-                aftertasteProgressBar.ProgressTo(Double.Parse(coffeeType.aftertaste) / 10d, animationTime, animationType);
+                setProgressBarAnimation(aftertasteProgressBar, coffeeType.aftertaste);
+            }
+        }
+
+        private void setProgressBarAnimation(ProgressBar progressBar, string parameterScore)
+        {
+            progressBar.ProgressTo(Double.Parse(parameterScore) / 10d, animationTime, animationType);
+        }
+
+        private bool isParameterKnown(string parameter)
+        {
+            if(parameter != "unknown")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
